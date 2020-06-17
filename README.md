@@ -1,0 +1,2 @@
+# DLG_Dataflow
+DLGのデータパイプライン講座をDataflowで書いたときのソースコードなど
