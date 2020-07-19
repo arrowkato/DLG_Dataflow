@@ -25,7 +25,7 @@ def show_message(token, channel_id):
 def get_dlg_slack_token():
     '''
     DLGのAPIトークンを取得。Gitから直接見えるのはよろしくないので、./slack_token.txtに保存している
-    :return:
+    :return: tokenを文字列で返す
     '''
     path = './slack_token.txt'
     with open(path) as f:
@@ -59,3 +59,4 @@ if __name__ == '__main__':
 
     # CNKV8CVN0 : 07-01-データパイプライン講座執筆
     show_message(token, "CNKV8CVN0")
+
