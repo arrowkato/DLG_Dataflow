@@ -37,6 +37,9 @@ class Extract:
         ユーザ一覧を表示する
         :return: ユーザの一覧
         """
+        payload = {
+            "token": self.token,
+        }
         response = requests.get(self.urls["users_list"], params=payload)
         json_response = response.json()
         # 整形
