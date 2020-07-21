@@ -46,8 +46,49 @@ class Extract:
         output = json.dumps(json_response, indent=4)
         print(output)
 
+    def list_message(self, channel_id):
+        '''
+        channel_idで指定したチャンネルのメッセージを表示
+        :param token: DLGのSlackのAPI Token
+        :param channel_id: channelのid get_DLG_slack_token()で取得可能
+        :return: None
+        '''
+        messages = self.receive_message(channel_id)
+
+        for message in messages:
+            print(message)
+
+    def receive_message(self, channel_id):
+        '''
+        channel_idで指定したチャンネルのメッセージを表示
+        :param token: DLGのSlackのAPI Token
+        :param channel_id: channelのid get_DLG_slack_token()で取得可能
+        :return: None
+        '''
+        payload = {
+            "token": self.token,
+            "channel": channel_id
+        }
+        url = "https://slack.com/api/channels.history"
+        response = requests.get(url, params=payload)
+
+        json_data = response.json()
+
+        messages = json_data["messages"]
+        list = []
+        for message in messages:
+            list.append(message["text"])
+            #print(message["text"])
+
+        return list
+
+
 
 if __name__ == '__main__':
     extract = Extract()
-    # extract.list_channel_id()
-    extract.list_users()
+    #extract.list_channel_id()
+    #extract.list_users()
+
+    #extract.receive_message("C0134918QAE")
+    extract.list_message("C0134918QAE")
+
