@@ -23,8 +23,7 @@ src/DLG_service_account_key.json に保存。
 # 参考文献
 - [Dataflow公式ドキュメント](https://cloud.google.com/dataflow/docs?hl=ja)
 - [Apache Beam](https://beam.apache.org/documentation/)
-- [Apach Beamの公式サンプル][]
-- [wordcount.pyの解説](https://qiita.com/arrowKato/items/9cd957f429660290ae14)
+- [Apach Beamの公式サンプル:wordcount.pyの解説](https://qiita.com/arrowKato/items/9cd957f429660290ae14)
 - [Apache Beamの概念説明](https://qiita.com/esakik/items/3c5c18d4a645db7a8634)
 
 - [Apache Beam example](https://github.com/apache/beam/tree/master/sdks/python/apache_beam/examples)
