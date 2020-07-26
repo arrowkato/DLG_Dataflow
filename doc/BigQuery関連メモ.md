@@ -30,3 +30,6 @@ datasetの規約に沿ってテーブルが格納されていればよいです�
 # 99. 参考文献
 https://googleapis.dev/python/bigquery/latest/usage/index.html
 
+## バーティション分割テーブル
+- [BigQuery で日付分割テーブルを作成する](https://www.qwiklabs.com/focuses/3694?parent=catalog)
+- [パーティション分割テーブルの概要](https://cloud.google.com/bigquery/docs/partitioned-tables)
