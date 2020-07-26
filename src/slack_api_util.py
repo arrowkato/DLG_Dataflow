@@ -1,6 +1,7 @@
 import requests
 import json
-
+from slack import WebClient
+from slack.errors import SlackApiError
 
 class SlackAPIUtil:
     def __init__(self, token_path="./slack_token.txt"):
@@ -12,6 +13,8 @@ class SlackAPIUtil:
 
         self.urls = {"conversations_list": "https://slack.com/api/conversations.list",
                      "users_list": "https://slack.com/api/users.list"}
+        # slackのライブラリ用
+        self.slack_client = WebClient(token=token)
 
     def list_channel_id(self):
         """
@@ -77,13 +80,35 @@ class SlackAPIUtil:
 
         return list
 
+    def send_message(self, channel_name, message_body):
+
+        try:
+            response = self.slack_client.chat_postMessage(
+                channel=channel_name,
+                text=message_body)
+            assert response["message"]["text"] == message_body
+        except SlackApiError as e:
+            # You will get a SlackApiError if "ok" is False
+            assert e.response["ok"] is False
+            assert e.response["error"]  # str like 'invalid_auth', 'channel_not_found'
+            print(f"Got an error: {e.response['error']}")
+
+
+
+
 
 
 if __name__ == '__main__':
     spu = SlackAPIUtil()
-    #extract.list_channel_id()
-    #extract.list_users()
+    # とあるチャンネルのメッセージを取得
+    # spu.list_message("C0134918QAE")
 
-    #extract.receive_message("C0134918QAE")
-    spu.list_message("C0134918QAE")
+    # とあるチャンネルにメッセージを送る
+    #spu.list_message("C0134918QAE")
+    #spu.list_channel_id()
+    #slack_token = os.getenv("")
+
+    spu.send_message("#07-01-データパイプライン講座執筆", "でぃすいいずてすとめっせーじ :fire:")
+
+
 
