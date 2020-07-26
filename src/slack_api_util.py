@@ -1,9 +1,8 @@
 import requests
 import json
-import const
 
 
-class Extract:
+class SlackAPIUtil:
     def __init__(self, token_path="./slack_token.txt"):
         # 特に指定がない場合は、defaultのtokenを使う:
         with open(token_path) as f:
@@ -11,9 +10,8 @@ class Extract:
 
         self.token = token
 
-        self.urls = {str, str}
-        self.urls["conversations_list"] = "https://slack.com/api/conversations.list"
-        self.urls["users_list"] = "https://slack.com/api/users.list"
+        self.urls = {"conversations_list": "https://slack.com/api/conversations.list",
+                     "users_list": "https://slack.com/api/users.list"}
 
     def list_channel_id(self):
         """
@@ -82,10 +80,10 @@ class Extract:
 
 
 if __name__ == '__main__':
-    extract = Extract()
+    spu = SlackAPIUtil()
     #extract.list_channel_id()
     #extract.list_users()
 
     #extract.receive_message("C0134918QAE")
-    extract.list_message("C0134918QAE")
+    spu.list_message("C0134918QAE")
 
